@@ -1,0 +1,28 @@
+app:
+  name: Legend Studio AI
+  version: 0.1.0
+  environment: development
+
+paths:
+  assets: assets
+  cache: storage/cache
+  database: storage/database
+  logs: logs
+  projects: projects
+
+video:
+  width: 1080
+  height: 1920
+  fps: 30
+
+cache:
+  enabled: true
+  max_size_gb: 50
+
+providers:
+  image: none
+  voice: none
+  llm: none
+
+logging:
+  level: INFO
