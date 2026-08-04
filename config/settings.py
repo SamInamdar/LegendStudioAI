@@ -1,49 +1,32 @@
 """
-Configuration Loader
+Application Settings.
 """
 
-from pathlib import Path
-from typing import Any
+from dataclasses import dataclass
+import os
 
-import yaml
+from config.config_loader import ConfigLoader
 
 
+ConfigLoader.load()
+
+
+@dataclass(slots=True)
 class Settings:
-    """
-    Loads configuration from YAML.
-    """
+    """Application settings loaded from environment."""
 
-    def __init__(self, config_file: str = "config/config.yaml") -> None:
-        self._config_path = Path(config_file)
+    app_env: str = os.getenv("APP_ENV", "development")
 
-        if not self._config_path.exists():
-            raise FileNotFoundError(
-                f"Configuration file not found: {self._config_path}"
-            )
+    log_level: str = os.getenv("LOG_LEVEL", "INFO")
 
-        with open(self._config_path, "r", encoding="utf-8") as file:
-            self.data: dict[str, Any] = yaml.safe_load(file)
+    gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
 
-    def get(self, key: str, default: Any = None) -> Any:
-        """
-        Access nested configuration using dot notation.
+    openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
 
-        Example:
-            settings.get("video.width")
-        """
+    groq_api_key: str = os.getenv("GROQ_API_KEY", "")
 
-        value: Any = self.data
+    elevenlabs_api_key: str = os.getenv("ELEVENLABS_API_KEY", "")
 
-        for part in key.split("."):
-            if isinstance(value, dict):
-                value = value.get(part)
-            else:
-                return default
+    youtube_client_id: str = os.getenv("YOUTUBE_CLIENT_ID", "")
 
-            if value is None:
-                return default
-
-        return value
-
-
-settings = Settings()
+    youtube_client_secret: str = os.getenv("YOUTUBE_CLIENT_SECRET", "")

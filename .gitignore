@@ -70,3 +70,9 @@ workspace/assets/
 # Python cache
 __pycache__/
 *.py[cod]
+
+# ==========================================
+# Environment Variables
+# ==========================================
+
+.env

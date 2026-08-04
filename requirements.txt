@@ -65,3 +65,7 @@ pytest
 black
 isort
 ruff
+
+google-genai
+python-dotenv
+pytest
