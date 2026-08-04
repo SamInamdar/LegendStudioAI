@@ -1,4 +1,16 @@
-from core.logging import logger
+"""
+Legend Studio AI
 
-logger.info("Legend Studio AI Started")
-logger.info("Logging System Ready")
+Application Entry Point
+"""
+
+from core.bootstrap.bootstrap import Bootstrap
+
+
+def main() -> None:
+    """Application entry point."""
+    Bootstrap().run()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,5 +1,3 @@
-from .logger import LoggerManager
+from .logger_manager import LoggerManager
 
-LoggerManager()
-
-logger = LoggerManager.get_logger("LegendStudioAI")
+__all__ = ["LoggerManager"]

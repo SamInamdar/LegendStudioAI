@@ -52,3 +52,21 @@ models_cache/
 
 # FFmpeg
 ffmpeg_bin/
+
+
+
+# ==================================================
+# Legend Studio AI - Runtime Workspace
+# ==================================================
+
+# Temporary runtime files
+workspace/cache/
+workspace/temp/
+workspace/logs/
+
+# Generated assets
+workspace/assets/
+
+# Python cache
+__pycache__/
+*.py[cod]
