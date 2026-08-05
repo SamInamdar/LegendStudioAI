@@ -1,22 +1,21 @@
 """
 Provider Registry.
-
-Stores available AI providers.
 """
-
-from providers.base import AIProvider
 
 
 class ProviderRegistry:
-    """Registers and retrieves AI providers."""
+    """Registry of AI providers."""
 
-    def __init__(self) -> None:
-        self._providers: dict[str, AIProvider] = {}
+    def get_provider(self, name: str):
 
-    def register(self, name: str, provider: AIProvider) -> None:
-        """Register a provider."""
-        self._providers[name] = provider
+        name = name.lower()
 
-    def get(self, name: str) -> AIProvider:
-        """Retrieve a provider by name."""
-        return self._providers[name]
+        if name == "gemini":
+            from providers.ai.gemini_provider import GeminiProvider
+            return GeminiProvider()
+
+        if name == "groq":
+            from providers.ai.groq_provider import GroqProvider
+            return GroqProvider()
+
+        raise ValueError(f"Unknown provider: {name}")

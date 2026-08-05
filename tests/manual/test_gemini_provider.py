@@ -1,35 +1,31 @@
 """
 Manual test for Gemini Provider.
-
-Run this file after adding a valid Gemini API key.
 """
 
 from providers.ai.gemini_provider import GeminiProvider
 
 
 def main() -> None:
-    """Run a manual Gemini test."""
+    """Manual test."""
 
     provider = GeminiProvider()
 
-    prompt = """
-Write a motivational YouTube Shorts script.
-
-Topic: Never Give Up
-
-Requirements:
-- Maximum 120 words
-- Powerful hook
-- Emotional ending
-"""
-
-    print("\nGenerating response...\n")
-
-    result = provider.generate_text(prompt)
+    prompt = "Write a motivational story in exactly 100 words."
 
     print("=" * 60)
-    print(result)
+    print("Testing Gemini Provider")
     print("=" * 60)
+
+    try:
+        result = provider.generate_text(prompt)
+
+        print("\n✅ SUCCESS\n")
+        print(result)
+
+    except Exception as ex:
+        print("\n❌ FAILED\n")
+        print(type(ex).__name__)
+        print(ex)
 
 
 if __name__ == "__main__":

@@ -30,3 +30,7 @@ class Settings:
     youtube_client_id: str = os.getenv("YOUTUBE_CLIENT_ID", "")
 
     youtube_client_secret: str = os.getenv("YOUTUBE_CLIENT_SECRET", "")
+
+    ai_provider: str = os.getenv("AI_PROVIDER", "gemini")
+
+    default_llm_model: str = os.getenv("DEFAULT_LLM_MODEL", "")

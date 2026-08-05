@@ -9,7 +9,10 @@ from google import genai
 from config.settings import Settings
 
 
-class GeminiProvider:
+from providers.base.ai_provider import AIProvider
+
+
+class GeminiProvider(AIProvider):
     """Google Gemini Provider."""
 
     def __init__(self) -> None:

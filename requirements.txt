@@ -69,3 +69,5 @@ ruff
 google-genai
 python-dotenv
 pytest
+
+groq
