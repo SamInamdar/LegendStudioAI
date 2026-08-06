@@ -5,13 +5,36 @@ def main():
 
     engine = StoryEngine()
 
-    story = engine.generate(
-        "A poor boy who became successful through hard work"
-    )
+    story = engine.generate("Poor Boy Success Story")
 
-    print("\n")
     print("=" * 80)
-    print(story)
+
+    print("TITLE")
+    print(story.title)
+
+    print()
+
+    print("HOOK")
+    print(story.hook)
+
+    print()
+
+    print("SCENES")
+
+    for scene in story.scenes:
+
+        print(f"{scene.scene_number}. {scene.narration}")
+
+    print()
+
+    print("MORAL")
+    print(story.moral)
+
+    print()
+
+    print("CTA")
+    print(story.cta)
+
     print("=" * 80)
 
 

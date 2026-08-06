@@ -1,31 +1,27 @@
-"""
-Manual test for Gemini Provider.
-"""
-
 from providers.ai.gemini_provider import GeminiProvider
+from providers.models import AIRequest
 
 
-def main() -> None:
-    """Manual test."""
+def main():
 
     provider = GeminiProvider()
 
-    prompt = "Write a motivational story in exactly 100 words."
+    request = AIRequest(
+        system_prompt="You are a helpful assistant.",
+        user_prompt="Say hello in one sentence.",
+    )
 
-    print("=" * 60)
-    print("Testing Gemini Provider")
-    print("=" * 60)
+    response = provider.generate(request)
 
-    try:
-        result = provider.generate_text(prompt)
+    print("=" * 80)
 
-        print("\n✅ SUCCESS\n")
-        print(result)
+    print(response.provider)
 
-    except Exception as ex:
-        print("\n❌ FAILED\n")
-        print(type(ex).__name__)
-        print(ex)
+    print(response.model)
+
+    print()
+
+    print(response.text)
 
 
 if __name__ == "__main__":

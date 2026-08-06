@@ -1,16 +1,18 @@
 """
-Base AI Provider Interface.
+AI Provider Interface.
 """
 
 from abc import ABC, abstractmethod
 
+from providers.models import AIRequest, AIResponse
+
 
 class AIProvider(ABC):
-    """Base interface for all AI providers."""
+    """Base AI Provider."""
 
     @abstractmethod
-    def generate_text(self, prompt: str) -> str:
-        """
-        Generate text from a prompt.
-        """
-        raise NotImplementedError
+    def generate(
+        self,
+        request: AIRequest,
+    ) -> AIResponse:
+        """Generate AI response."""

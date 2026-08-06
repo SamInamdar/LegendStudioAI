@@ -1,36 +1,31 @@
 """
 Story Engine.
-
-Responsible for generating stories.
 """
 
-from providers.factory import AIFactory
+from providers.factory.ai_factory import AIFactory
+from providers.models import AIRequest
+
+from services.story.prompts import StoryPrompts
+from services.story.story_mapper import StoryMapper
+from utils.json_parser import JsonParser
 
 
 class StoryEngine:
-    """Story generation engine."""
+    """Generates structured motivational stories."""
 
-    def __init__(self) -> None:
+    def __init__(self):
+
         self.provider = AIFactory.create()
 
-    def generate(self, topic: str) -> str:
-        """
-        Generate a story from a topic.
-        """
+    def generate(self, topic: str):
 
-        prompt = f"""
-You are a professional YouTube storyteller.
+        request = AIRequest(
+            system_prompt="You are a world-class motivational storyteller.",
+            user_prompt=StoryPrompts.motivational(topic),
+        )
 
-Write a highly emotional motivational story.
+        response = self.provider.generate(request)
 
-Topic:
-{topic}
+        data = JsonParser.parse(response.text)
 
-Requirements:
-- Around 250 words
-- Strong hook
-- Clear ending
-- Suitable for YouTube Shorts narration
-"""
-
-        return self.provider.generate_text(prompt)
+        return StoryMapper.from_dict(data)

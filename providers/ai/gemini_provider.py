@@ -1,35 +1,42 @@
 """
 Gemini Provider.
-
-Google Gemini implementation.
 """
 
 from google import genai
 
 from config.settings import Settings
-
-
 from providers.base.ai_provider import AIProvider
+from providers.models import AIRequest, AIResponse
 
 
 class GeminiProvider(AIProvider):
-    """Google Gemini Provider."""
+    """Google Gemini implementation."""
 
-    def __init__(self) -> None:
+    MODEL = "gemini-2.0-flash"
+
+    def __init__(self):
+
         settings = Settings()
 
         self.client = genai.Client(
             api_key=settings.gemini_api_key,
         )
 
-    def generate_text(self, prompt: str) -> str:
-        """
-        Generate text using Gemini.
-        """
+    def generate(self, request: AIRequest) -> AIResponse:
+
+        prompt = f"""
+{request.system_prompt}
+
+{request.user_prompt}
+"""
 
         response = self.client.models.generate_content(
-            model="gemini-2.0-flash",
+            model=self.MODEL,
             contents=prompt,
         )
 
-        return response.text
+        return AIResponse(
+            text=response.text,
+            provider="Gemini",
+            model=self.MODEL,
+        )
