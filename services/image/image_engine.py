@@ -2,42 +2,29 @@
 Image Engine.
 """
 
-from providers.factory.ai_factory import AIFactory
-from providers.models import AIRequest
+import os
 
-from services.image.image_prompts import ImagePrompts
-from services.image.models import ImageRequest, ImageResult
-from services.story.story_package import StoryPackage
+from providers.factory.image_factory import ImageFactory
 
 
 class ImageEngine:
-    """Generates images for story scenes."""
+    """Generates images from prompts."""
 
     def __init__(self):
-        self.provider = AIFactory.create()
 
-    def generate(self, story: StoryPackage) -> list[ImageResult]:
+        self.provider = ImageFactory.create()
 
-        images = []
+    def generate(
+        self,
+        prompt: str,
+        output_path: str,
+    ):
 
-        for scene in story.scenes:
+        folder = os.path.dirname(output_path)
 
-            prompt = ImagePrompts.build(scene)
+        os.makedirs(folder, exist_ok=True)
 
-            request = AIRequest(
-                system_prompt="You are an expert cinematic image prompt engineer.",
-                user_prompt=prompt,
-            )
-
-            # Temporary placeholder.
-            # In the next sprint this will call an actual image model.
-            self.provider.generate(request)
-
-            images.append(
-                ImageResult(
-                    prompt=prompt,
-                    image_path=f"workspace/assets/images/scene_{scene.scene_number:03}.png",
-                )
-            )
-
-        return images
+        self.provider.generate_image(
+            prompt=prompt,
+            output_path=output_path,
+        )

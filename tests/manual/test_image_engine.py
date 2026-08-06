@@ -1,34 +1,31 @@
-from services.story.story_engine import StoryEngine
-from services.image.image_engine import ImageEngine
+from services.image import ImageEngine
 
 
 def main():
 
-    story_engine = StoryEngine()
-    image_engine = ImageEngine()
+    engine = ImageEngine()
 
-    story = story_engine.generate("Poor Boy Success Story")
+    prompt = """
+A poor boy studying under a street light,
+cinematic,
+golden hour,
+ultra realistic,
+8k,
+highly detailed,
+emotional,
+Hollywood lighting
+"""
 
-    images = image_engine.generate(story)
+    output = "workspace/assets/images/test.png"
+
+    engine.generate(
+        prompt=prompt,
+        output_path=output,
+    )
 
     print("=" * 80)
-
-    print("GENERATED IMAGE PROMPTS")
-
-    print("=" * 80)
-
-    for image in images:
-
-        print("-" * 80)
-
-        print(image.image_path)
-
-        print()
-
-        print(image.prompt)
-
-        print()
-
+    print("Image generated successfully!")
+    print(output)
     print("=" * 80)
 
 
