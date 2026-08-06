@@ -17,50 +17,73 @@ Create an ORIGINAL motivational story.
 TOPIC:
 {topic}
 
+IMPORTANT:
 Return ONLY valid JSON.
+Do NOT use markdown.
+Do NOT write any explanation.
+Do NOT add extra text before or after the JSON.
 
-Do NOT write markdown.
-
-JSON FORMAT:
-
-Return ONLY valid JSON.
+Return this EXACT JSON schema:
 
 {{
     "title":"...",
     "hook":"...",
-    "story":"...",
     "scenes":[
         {{
-            "number":1,
-            "description":"..."
+            "scene_number":1,
+            "narration":"...",
+            "image_prompt":"...",
+            "camera_angle":"Eye Level",
+            "lighting":"Golden Hour",
+            "emotion":"Hope",
+            "duration":5
         }},
         {{
-            "number":2,
-            "description":"..."
+            "scene_number":2,
+            "narration":"...",
+            "image_prompt":"...",
+            "camera_angle":"Wide Shot",
+            "lighting":"Morning",
+            "emotion":"Struggle",
+            "duration":5
         }},
         {{
-            "number":3,
-            "description":"..."
+            "scene_number":3,
+            "narration":"...",
+            "image_prompt":"...",
+            "camera_angle":"Close Up",
+            "lighting":"Natural",
+            "emotion":"Determination",
+            "duration":5
         }},
         {{
-            "number":4,
-            "description":"..."
+            "scene_number":4,
+            "narration":"...",
+            "image_prompt":"...",
+            "camera_angle":"Cinematic",
+            "lighting":"Sunset",
+            "emotion":"Success",
+            "duration":5
         }},
         {{
-            "number":5,
-            "description":"..."
+            "scene_number":5,
+            "narration":"...",
+            "image_prompt":"...",
+            "camera_angle":"Drone Shot",
+            "lighting":"Golden Hour",
+            "emotion":"Inspiration",
+            "duration":5
         }}
     ],
     "moral":"...",
     "cta":"Subscribe for more inspiring stories."
 }}
 
-Requirements:
+Rules:
 
-- Story around 250 words
-- Emotional
-- Strong hook
-- Happy ending
-- Simple English
-- Generate exactly 5 scenes.
+- Exactly 5 scenes.
+- Every scene must contain ALL fields.
+- image_prompt must describe the image in cinematic detail.
+- narration should be 2–4 sentences.
+- Return ONLY JSON.
 """

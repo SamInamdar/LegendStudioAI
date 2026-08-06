@@ -13,6 +13,11 @@ class StoryMapper:
 
         scenes = []
 
+        print("=" * 80)
+        print("DEBUG SCENES:")
+        print(data["scenes"])
+        print("=" * 80)
+
         for item in data["scenes"]:
 
             scenes.append(
@@ -26,6 +31,8 @@ class StoryMapper:
                     duration=item["duration"],
                 )
             )
+
+        print(f"Mapped {len(scenes)} scenes.")
 
         return StoryPackage(
             title=data["title"],

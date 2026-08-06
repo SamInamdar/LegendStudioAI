@@ -1,4 +1,4 @@
-from services.story import StoryEngine
+from services.story.story_engine import StoryEngine
 
 
 def main():
@@ -22,8 +22,14 @@ def main():
     print("SCENES")
 
     for scene in story.scenes:
-
-        print(f"{scene.scene_number}. {scene.narration}")
+        print("-" * 60)
+        print(f"Scene {scene.scene_number}")
+        print(f"Narration : {scene.narration}")
+        print(f"Image     : {scene.image_prompt}")
+        print(f"Camera    : {scene.camera_angle}")
+        print(f"Lighting  : {scene.lighting}")
+        print(f"Emotion   : {scene.emotion}")
+        print(f"Duration  : {scene.duration}s")
 
     print()
 

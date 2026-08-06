@@ -25,6 +25,14 @@ class StoryEngine:
         )
 
         response = self.provider.generate(request)
+        print("=" * 80)
+        print("Response object:")
+        print(response)
+        print("=" * 80)
+
+        print("Response text:")
+        print(repr(response.text))
+        print("=" * 80)
 
         data = JsonParser.parse(response.text)
 
