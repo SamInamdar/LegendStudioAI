@@ -1,5 +1,5 @@
 """
-AI Provider Interface.
+Text Provider Interface.
 """
 
 from abc import ABC, abstractmethod
@@ -7,12 +7,13 @@ from abc import ABC, abstractmethod
 from providers.models import AIRequest, AIResponse
 
 
-class AIProvider(ABC):
-    """Base AI Provider."""
+class TextProvider(ABC):
+    """Base Text Provider."""
 
     @abstractmethod
     def generate(
         self,
         request: AIRequest,
     ) -> AIResponse:
-        """Generate AI response."""
+        """Generate text response."""
+        pass

@@ -1,3 +1,3 @@
-from .ai_provider import AIProvider
+from .text_provider import TextProvider
 
-__all__ = ["AIProvider"]
+__all__ = ["TextProvider"]

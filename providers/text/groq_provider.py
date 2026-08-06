@@ -5,11 +5,11 @@ Groq Provider.
 from groq import Groq
 
 from config.settings import Settings
-from providers.base.ai_provider import AIProvider
+from providers.base.text_provider import TextProvider
 from providers.models import AIRequest, AIResponse
 
 
-class GroqProvider(AIProvider):
+class GroqProvider(TextProvider):
     """Groq AI Provider."""
 
     def __init__(self) -> None:

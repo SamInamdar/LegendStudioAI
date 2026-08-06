@@ -1,7 +1,7 @@
-from .base import AIProvider
+from .base import TextProvider
 from .registry import ProviderRegistry
 
 __all__ = [
-    "AIProvider",
+    "TextProvider",
     "ProviderRegistry",
 ]

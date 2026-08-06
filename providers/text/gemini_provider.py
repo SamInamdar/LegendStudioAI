@@ -5,11 +5,11 @@ Gemini Provider.
 from google import genai
 
 from config.settings import Settings
-from providers.base.ai_provider import AIProvider
+from providers.base.text_provider import TextProvider
 from providers.models import AIRequest, AIResponse
 
 
-class GeminiProvider(AIProvider):
+class GeminiProvider(TextProvider):
     """Google Gemini implementation."""
 
     MODEL = "gemini-2.0-flash"
@@ -37,6 +37,6 @@ class GeminiProvider(AIProvider):
 
         return AIResponse(
             text=response.text,
-            provider="Gemini",
+            provider="gemini",
             model=self.MODEL,
         )
