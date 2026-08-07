@@ -13,12 +13,6 @@ class Scene:
 
     narration: str
 
-    image_prompt: str
-
-    camera_angle: str
-
-    lighting: str
-
     emotion: str
 
     duration: int

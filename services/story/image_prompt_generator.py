@@ -2,39 +2,28 @@
 Image Prompt Generator.
 """
 
-from providers.factory import AIFactory
-
 
 class ImagePromptGenerator:
-    """Generate cinematic image prompts."""
+    """Generates cinematic image prompts."""
 
-    def __init__(self):
-        self.provider = AIFactory.create()
+    @staticmethod
+    def generate(scene) -> str:
 
-    def generate(self, description: str) -> str:
+        return f"""
+{scene.narration}
 
-        prompt = f"""
-You are a Hollywood movie concept artist.
+Emotion: {scene.emotion}
 
-Convert the following scene into a cinematic AI image prompt.
-
-Scene:
-{description}
-
-Rules:
-
-- Ultra realistic
-- Cinematic
-- 8K
-- Highly detailed
-- Emotional
-- Natural lighting
-- DSLR photography
-- Sharp focus
-- Realistic human anatomy
-- Professional color grading
-
-Return ONLY the image prompt.
-"""
-
-        return self.provider.generate_text(prompt)
+Style:
+Ultra realistic,
+cinematic,
+Hollywood movie,
+8K,
+masterpiece,
+highly detailed,
+volumetric lighting,
+global illumination,
+sharp focus,
+dramatic composition,
+professional color grading
+""".strip()

@@ -32,46 +32,31 @@ Return this EXACT JSON schema:
         {{
             "scene_number":1,
             "narration":"...",
-            "image_prompt":"...",
-            "camera_angle":"Eye Level",
-            "lighting":"Golden Hour",
-            "emotion":"Hope",
+            "emotion":"...",
             "duration":5
         }},
         {{
             "scene_number":2,
             "narration":"...",
-            "image_prompt":"...",
-            "camera_angle":"Wide Shot",
-            "lighting":"Morning",
-            "emotion":"Struggle",
+            "emotion":"...",
             "duration":5
         }},
         {{
             "scene_number":3,
             "narration":"...",
-            "image_prompt":"...",
-            "camera_angle":"Close Up",
-            "lighting":"Natural",
-            "emotion":"Determination",
+            "emotion":"...",
             "duration":5
         }},
         {{
             "scene_number":4,
             "narration":"...",
-            "image_prompt":"...",
-            "camera_angle":"Cinematic",
-            "lighting":"Sunset",
-            "emotion":"Success",
+            "emotion":"...",
             "duration":5
         }},
         {{
             "scene_number":5,
             "narration":"...",
-            "image_prompt":"...",
-            "camera_angle":"Drone Shot",
-            "lighting":"Golden Hour",
-            "emotion":"Inspiration",
+            "emotion":"...",
             "duration":5
         }}
     ],
@@ -82,8 +67,9 @@ Return this EXACT JSON schema:
 Rules:
 
 - Exactly 5 scenes.
-- Every scene must contain ALL fields.
-- image_prompt must describe the image in cinematic detail.
 - narration should be 2–4 sentences.
-- Return ONLY JSON.
+- Use simple, emotional English.
+- Build the story from struggle to success.
+- End with a powerful moral.
+- Return ONLY valid JSON.
 """
