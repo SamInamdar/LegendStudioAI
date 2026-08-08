@@ -22,7 +22,12 @@ cache:
 providers:
   image: none
   voice: none
-  llm: none
+
+  llm:
+    - gemini
+    - openrouter
+    - groq
+    - openai
 
 logging:
   level: INFO
