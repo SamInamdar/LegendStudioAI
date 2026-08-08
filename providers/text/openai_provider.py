@@ -45,7 +45,6 @@ class OpenAIProvider(TextProvider):
                 model=self.model,
                 instructions=request.system_prompt,
                 input=request.user_prompt,
-                temperature=request.temperature,
                 max_output_tokens=request.max_tokens,
             )
 

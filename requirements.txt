@@ -71,3 +71,4 @@ python-dotenv
 pytest
 
 groq
+edge-tts

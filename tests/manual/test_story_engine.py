@@ -1,5 +1,8 @@
+from core import context
+from services import story
 from services.story.story_engine import StoryEngine
-from services.image import StoryImageGenerator
+from services.asset.scene_asset_generator import SceneAssetGenerator
+from core.bootstrap.bootstrap import Bootstrap
 
 
 def main():
@@ -8,8 +11,12 @@ def main():
 
     story = engine.generate("Poor Boy Success Story")
 
-    image_generator = StoryImageGenerator()
-    image_generator.generate(story)
+    context = Bootstrap().run()
+    image_generator = SceneAssetGenerator(context.storage)
+    images = image_generator.generate(story)
+
+    print()
+    print(f"Images generated: {len(images)}")
 
     print("=" * 80)
 
