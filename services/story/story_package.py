@@ -17,6 +17,10 @@ class Scene:
 
     duration: int
 
+    image_prompt: str = ""
+    camera_angle: str = ""
+    lighting: str = ""
+
 
 @dataclass(slots=True)
 class StoryPackage:

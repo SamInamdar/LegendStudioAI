@@ -8,13 +8,15 @@ class ImagePromptGenerator:
 
     @staticmethod
     def generate(scene) -> str:
+        """Generate a cinematic prompt from a story scene."""
 
         return f"""
 {scene.narration}
 
-Emotion: {scene.emotion}
+Emotion:
+{scene.emotion}
 
-Style:
+Visual Style:
 Ultra realistic,
 cinematic,
 Hollywood movie,
@@ -25,5 +27,8 @@ volumetric lighting,
 global illumination,
 sharp focus,
 dramatic composition,
-professional color grading
+professional color grading,
+no text,
+no watermark,
+no logo
 """.strip()
