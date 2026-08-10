@@ -9,6 +9,7 @@ from services.evaluator.story_evaluator import StoryEvaluator
 from services.story.prompts import StoryPrompts
 from services.story.story_mapper import StoryMapper
 from utils.json_parser import JsonParser
+from services.story.shot_planner import ShotPlanner
 
 
 class StoryEngine:
@@ -39,6 +40,7 @@ class StoryEngine:
 
         for scene in story.scenes:
             scene.image_prompt = ImagePromptGenerator.generate(scene)
+            scene.shots = ShotPlanner.plan(scene)
 
         is_valid, errors = self.evaluator.evaluate(story)
 

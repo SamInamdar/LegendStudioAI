@@ -6,6 +6,23 @@ from dataclasses import dataclass, field
 
 
 @dataclass(slots=True)
+class Shot:
+    """Single cinematic shot inside a scene."""
+
+    shot_number: int
+
+    prompt: str
+
+    duration: float
+
+    camera_movement: str = ""
+
+    camera_angle: str = ""
+
+    transition: str = ""
+
+
+@dataclass(slots=True)
 class Scene:
     """Single story scene."""
 
@@ -20,6 +37,8 @@ class Scene:
     image_prompt: str = ""
     camera_angle: str = ""
     lighting: str = ""
+
+    shots: list[Shot] = field(default_factory=list)
 
 
 @dataclass(slots=True)
