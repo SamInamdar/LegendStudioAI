@@ -6,42 +6,50 @@ from pathlib import Path
 
 from services.image.image_engine import ImageEngine
 from services.story.image_prompt_generator import ImagePromptGenerator
+from services.story.shot_planner import ShotPlanner
 
 
 class StoryImageGenerator:
-    """Generates cinematic shot images for every scene."""
+    """Generates cinematic images for every story shot."""
 
     def __init__(self):
-
         self.engine = ImageEngine()
 
     def generate(self, story):
 
-        print("\nGenerating Cinematic Images...\n")
+        print("\nGenerating Cinematic Shot Images...\n")
 
-        images = []
-
-        image_dir = Path("workspace/assets/images")
-        image_dir.mkdir(parents=True, exist_ok=True)
+        total_images = 0
 
         for scene in story.scenes:
 
-            # Backward compatibility:
-            # If a scene has no planned shots, use the
-            # original scene-level image generation.
-            shots = scene.shots
+            print("=" * 70)
+            print(f"SCENE {scene.scene_number}")
+            print("=" * 70)
 
-            if not shots:
+            # Create cinematic shot plan
+            scene.shots = ShotPlanner.plan(scene)
 
-                prompt = ImagePromptGenerator.generate(scene)
+            print(f"Shots planned: {len(scene.shots)}")
 
-                output_path = (
-                    image_dir
-                    / f"scene_{scene.scene_number:02d}.png"
+            for shot in scene.shots:
+
+                prompt = ImagePromptGenerator.generate(
+                    scene=scene,
+                    shot=shot,
+                )
+
+                output_path = Path(
+                    "workspace/assets/images"
+                ) / (
+                    f"scene_{scene.scene_number:02d}"
+                    f"_shot_{shot.shot_number:02d}.png"
                 )
 
                 print(
-                    f"Generating Scene {scene.scene_number}..."
+                    f"Generating Scene {scene.scene_number} "
+                    f"| Shot {shot.shot_number} "
+                    f"| {shot.camera_angle}"
                 )
 
                 self.engine.generate(
@@ -49,38 +57,10 @@ class StoryImageGenerator:
                     output_path=str(output_path),
                 )
 
-                images.append(output_path)
-
                 print(f"Saved -> {output_path}")
 
-                continue
+                total_images += 1
 
-            for shot in shots:
-
-                output_path = (
-                    image_dir
-                    / (
-                        f"scene_{scene.scene_number:02d}"
-                        f"_shot_{shot.shot_number:02d}.png"
-                    )
-                )
-
-                print(
-                    f"Generating Scene {scene.scene_number} "
-                    f"Shot {shot.shot_number}..."
-                )
-
-                self.engine.generate(
-                    prompt=shot.prompt,
-                    output_path=str(output_path),
-                )
-
-                images.append(output_path)
-
-                print(f"Saved -> {output_path}")
-
-        print(
-            f"\nCinematic images generated: {len(images)}\n"
-        )
-
-        return images
+        print("\n" + "=" * 70)
+        print(f"Total cinematic images generated: {total_images}")
+        print("=" * 70)
